@@ -6,7 +6,7 @@ switch ($request_method) {
          if(!empty($_GET["nim"]))
          {
             $id=strval($_GET["nim"]);
-            //$mk=strval($_GET["kode_mk"]);
+            $mk=strval($_GET["kode_mk"]);
             get_mhs($id); //$mk
          }
          else
@@ -59,7 +59,7 @@ switch ($request_method) {
       echo json_encode($response);
    }
  
-   function get_mhs($id) //$mk
+   function get_mhs($id, $mk)
    {
       global $mysqli;
       $query="SELECT mahasiswa.nim, mahasiswa.nama, mahasiswa.alamat, mahasiswa.tanggal_lahir, matakuliah.kode_mk, matakuliah.nama_mk, matakuliah.sks, perkuliahan.nilai 
@@ -68,7 +68,7 @@ switch ($request_method) {
       INNER JOIN matakuliah ON perkuliahan.kode_mk=matakuliah.kode_mk";
       if($id != 0)
       {
-         $query.=" WHERE mahasiswa.nim= '$id' "; //AND matakuliah.kode_mk= '$mk'
+         $query.=" WHERE mahasiswa.nim= '$id' AND matakuliah.kode_mk= '$mk'"; 
       }
       $data=array();
       $result=$mysqli->query($query);
