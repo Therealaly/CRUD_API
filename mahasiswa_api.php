@@ -7,7 +7,7 @@ switch ($request_method) {
          {
             $id=strval($_GET["nim"]);
             $mk=strval($_GET["kode_mk"]);
-            get_mhs($id); //$mk
+            get_mhs($id, $mk);
          }
          else
          {
